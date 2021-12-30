@@ -1,0 +1,472 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Wok and Wakis API",
+        "version": "1.0.0",
+        "description": "CRUD API for managing food items"
+    },
+    "tags": [
+        {
+            "name": "Food",
+            "description": "Operations related to food items"
+        }
+    ],
+    "paths": {
+        "/foods": {
+            "get": {
+                "tags": ["Food"],
+                "summary": "Get all food items",
+                "responses": {
+                    "200": {
+                        "description": "Foods fetched",
+                        "content": {
+                                "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Foods fetched",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "title": "string",
+                                            "description": "string",
+                                            "category": "string",
+                                            "price": 0,
+                                            "isPopular": 0,
+                                            "imageUrl": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Food"],
+                "summary": "Create a new food item",
+                "requestBody": {
+                        "required": true,
+                        "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FoodRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Food created",
+                        "content": {
+                                "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Food created",
+                                    "data": {
+                                        "id": 1,
+                                        "title": "string",
+                                        "description": "string",
+                                        "category": "string",
+                                        "price": 0,
+                                        "isPopular": 0,
+                                        "imageUrl": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/foods/bulk": {
+            "post": {
+                "tags": ["Food"],
+                "summary": "Bulk create food items",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/FoodRequest"
+                                }
+                            },
+                            "example": [
+                                {
+                                    "id": 1,
+                                    "title": "Hat Trick Breakfast",
+                                    "description": "Three eggs any style, three strips of bacon or three sausage links and this is very good and okay",
+                                    "price": 18.69,
+                                    "category": "Sandwiches",
+                                    "isPopular": true,
+                                    "imageUrl": "https://i.postimg.cc/FHwht2jp/three.jpg"
+                                },
+                                {
+                                    "id": 2,
+                                    "title": "Double Down Breakfast",
+                                    "description": "Two eggs any style, two strips of bacon or two sausage links, toast",
+                                    "price": 19.85,
+                                    "category": "Sandwiches",
+                                    "isPopular": true,
+                                    "imageUrl": "https://i.postimg.cc/nck6YNRr/double.jpg"
+                                },
+                                {
+                                    "id": 3,
+                                    "title": "Egg Bagel Sandwich",
+                                    "description": "Fried egg, American chees and diced ham, baconn strips or a sausage patty and this is very good and okay",
+                                    "price": 15.75,
+                                    "category": "Sandwiches",
+                                    "isPopular": true,
+                                    "imageUrl": "https://i.postimg.cc/28b03Jsg/casey.jpg"
+                                },
+                                {
+                                    "id": 4,
+                                    "title": "Wings & fries",
+                                    "description": "Comes with Fries",
+                                    "price": 18.46,
+                                    "category": "Wings & Tenders",
+                                    "isPopular": true,
+                                    "imageUrl": "https://i.postimg.cc/zD9cw8Fq/wings.jpg"
+                                },
+                                {
+                                    "id": 5,
+                                    "title": "Fish Tray",
+                                    "description": "Comes with 6 free Sauces",
+                                    "price": 18.00,
+                                    "category": "Party Trays",
+                                    "isPopular": false,
+                                    "imageUrl": "https://i.postimg.cc/kXmk376f/fish.jpg"
+                                },
+                                {
+                                    "id": 6,
+                                    "title": "Pick 2 & Fries",
+                                    "description": "Comes with fries and any sauce you want",
+                                    "price": 8.50,
+                                    "category": "Mix & Match Combos",
+                                    "isPopular": true,
+                                    "imageUrl": "https://i.postimg.cc/0yZn4sDM/edgar.jpg"
+                                },
+                                {
+                                    "id": 7,
+                                    "title": "Hush Puppies",
+                                    "description": "",
+                                    "price": 13.97,
+                                    "category": "Mix & Match Combos",
+                                    "isPopular": true,
+                                    "imageUrl": "https://i.postimg.cc/rwzR8X7t/cala.jpg"
+                                },
+                                {
+                                    "id": 8,
+                                    "title": "Mozarella Sticks",
+                                    "description": "Comes with Marinara Sauce",
+                                    "price": 14.09,
+                                    "category": "Kid’s Menu",
+                                    "isPopular": true,
+                                    "imageUrl": "https://i.postimg.cc/fLHhWFGJ/stick.jpg"
+                                },
+                                {
+                                    "id": 9,
+                                    "title": "Shrimp & Fries",
+                                    "description": "Comes with Fries",
+                                    "price": 5.02,
+                                    "category": "Fish & Shrimp",
+                                    "isPopular": true,
+                                    "imageUrl": "https://i.postimg.cc/KcM2h99v/shrimp.jpg"
+                                }, 
+                                {
+                                    "id": 10,
+                                    "title": "Tender Tray",
+                                    "description": "Comes with 6 free Sauces",
+                                    "price": 35.00,
+                                    "category": "Party Trays",
+                                    "isPopular": false,
+                                    "imageUrl": "https://i.postimg.cc/0QSHF49T/tender.jpg"
+                                },
+                                {
+                                    "id": 11,
+                                    "title": "WIngs Tray",
+                                    "description": "Comes with 6 free Sauces",
+                                    "price": 22.00,
+                                    "category": "Party Trays",
+                                    "isPopular": false,
+                                    "imageUrl": "https://i.postimg.cc/pTQJDMWL/ros.jpg"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Foods created successfully",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Foods created",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "title": "Hat Trick Breakfast",
+                                            "description": "Three eggs any style, three strips of bacon or three sausage links and this is very good and okay",
+                                            "category": "Sandwiches",
+                                            "price": 18.69,
+                                            "isPopular": true,
+                                            "imageUrl": "https://i.postimg.cc/FHwht2jp/three.jpg"
+                                        },
+                                        {
+                                            "id": 2,
+                                            "title": "Double Down Breakfast",
+                                            "description": "Two eggs any style, two strips of bacon or two sausage links, toast",
+                                            "category": "Sandwiches",
+                                            "price": 19.85,
+                                            "isPopular": true,
+                                            "imageUrl": "https://i.postimg.cc/nck6YNRr/double.jpg"
+                                        },
+                                        {
+                                            "id": 3,
+                                            "title": "Egg Bagel Sandwich",
+                                            "description": "Fried egg, American chees and diced ham, baconn strips or a sausage patty and this is very good and okay",
+                                            "category": "Sandwiches",
+                                            "price": 15.75,
+                                            "isPopular": true,
+                                            "imageUrl": "https://i.postimg.cc/28b03Jsg/casey.jpg"
+                                        },
+                                        {
+                                            "id": 4,
+                                            "title": "Wings & fries",
+                                            "description": "Comes with Fries",
+                                            "category": "Wings & Tenders",
+                                            "price": 18.46,
+                                            "isPopular": true,
+                                            "imageUrl": "https://i.postimg.cc/zD9cw8Fq/wings.jpg"
+                                        },
+                                        {
+                                            "id": 5,
+                                            "title": "Fish Tray",
+                                            "description": "Comes with 6 free Sauces",
+                                            "category": "Party Trays",
+                                            "price": 18,
+                                            "isPopular": false,
+                                            "imageUrl": "https://i.postimg.cc/kXmk376f/fish.jpg"
+                                        },
+                                        {
+                                            "id": 6,
+                                            "title": "Pick 2 & Fries",
+                                            "description": "Comes with fries and any sauce you want",
+                                            "category": "Mix & Match Combos",
+                                            "price": 8.5,
+                                            "isPopular": true,
+                                            "imageUrl": "https://i.postimg.cc/0yZn4sDM/edgar.jpg"
+                                        },
+                                        {
+                                            "id": 7,
+                                            "title": "Hush Puppies",
+                                            "description": "",
+                                            "category": "Mix & Match Combos",
+                                            "price": 13.97,
+                                            "isPopular": true,
+                                            "imageUrl": "https://i.postimg.cc/rwzR8X7t/cala.jpg"
+                                        },
+                                        {
+                                            "id": 8,
+                                            "title": "Mozarella Sticks",
+                                            "description": "Comes with Marinara Sauce",
+                                            "category": "Kid’s Menu",
+                                            "price": 14.09,
+                                            "isPopular": true,
+                                            "imageUrl": "https://i.postimg.cc/fLHhWFGJ/stick.jpg"
+                                        },
+                                        {
+                                            "id": 9,
+                                            "title": "Shrimp & Fries",
+                                            "description": "Comes with Fries",
+                                            "category": "Fish & Shrimp",
+                                            "price": 5.02,
+                                            "isPopular": true,
+                                            "imageUrl": "https://i.postimg.cc/KcM2h99v/shrimp.jpg"
+                                        },
+                                        {
+                                            "id": 10,
+                                            "title": "Tender Tray",
+                                            "description": "Comes with 6 free Sauces",
+                                            "category": "Party Trays",
+                                            "price": 35,
+                                            "isPopular": false,
+                                            "imageUrl": "https://i.postimg.cc/0QSHF49T/tender.jpg"
+                                        },
+                                        {
+                                            "id": 11,
+                                            "title": "WIngs Tray",
+                                            "description": "Comes with 6 free Sauces",
+                                            "category": "Party Trays",
+                                            "price": 22,
+                                            "isPopular": false,
+                                            "imageUrl": "https://i.postimg.cc/pTQJDMWL/ros.jpg"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "error",
+                                    "message": "Validation error",
+                                    "data": [
+                                        {
+                                            "field": "description",
+                                            "message": "Too small: expected string to have >=2 characters, please check bulk_data Entry 2"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/foods/{id}": {
+            "get": {
+                "tags": ["Food"],
+                "summary": "Get a food item by ID",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Food fetched",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Food fetched",
+                                    "data": {
+                                        "id": 1,
+                                        "title": "string",
+                                        "description": "string",
+                                        "category": "string",
+                                        "price": 0,
+                                        "isPopular": 0,
+                                        "imageUrl": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Food"],
+                "summary": "Update a food item",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                        "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FoodRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Food updated",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Food updated",
+                                    "data": {
+                                        "id": 1,
+                                        "title": "string",
+                                        "description": "string",
+                                        "category": "string",
+                                        "price": 0,
+                                        "isPopular": 0,
+                                        "imageUrl": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Food"],
+                "summary": "Delete a food item",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "required": true,
+                        "schema": { "type": "integer" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Food deleted",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Food deleted",
+                                    "data": null
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "FoodRequest": {
+                "type": "object",
+                "required": ["title", "category", "price", "imageUrl"],
+                "properties": {
+                    "title": { "type": "string" },
+                    "description": { "type": "string" },
+                    "category": { 
+                        "type": "string",
+                        "enum": [
+                            "Wings & Tenders",
+                            "Popcorn Chicken",
+                            "Mix & Match Combos",
+                            "Fish & Shrimp",
+                            "Sandwiches",
+                            "Drinks",
+                            "Party Trays",
+                            "Kid’s Menu",
+                            "Sides"
+                        ]
+                    },
+                    "price": { "type": "number" },
+                    "isPopular": {
+                        "type": "boolean",
+                        "default": false
+                    },
+                    "imageUrl": { "type": "string" }
+                }
+            }
+        }
+    }
+}
+  
