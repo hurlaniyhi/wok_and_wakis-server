@@ -434,6 +434,50 @@
                     }
                 }
             }
+        },
+        "/foods/search": {
+            "get": {
+                "tags": ["Food"],
+                "summary": "Get food items using search params",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "searchParam",
+                        "required": true,
+                        "schema": { "type": "string" }
+                    },
+                    {
+                        "in": "query",
+                        "name": "searchValue",
+                        "required": true,
+                        "schema": { "type": "string" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Foods fetched",
+                        "content": {
+                                "application/json": {
+                                "example": {
+                                    "status": "success",
+                                    "message": "Foods fetched",
+                                    "data": [
+                                        {
+                                            "id": 1,
+                                            "title": "string",
+                                            "description": "string",
+                                            "category": "string",
+                                            "price": 0,
+                                            "isPopular": 0,
+                                            "imageUrl": "string"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {

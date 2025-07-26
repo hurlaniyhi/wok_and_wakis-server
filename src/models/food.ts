@@ -67,6 +67,12 @@ export const getFoodById = async (id: number): Promise<Food | undefined> => {
     return helpers.normalizeFood(item);
 };
 
+export const searchFood = async (searchParam: string, searchValue: string): Promise<Food[]> => {
+    const db = await getDb();
+    const items = await db.all<Food[]>(`SELECT * FROM food WHERE ${searchParam} = ?`, searchValue);
+    return items.map(helpers.normalizeFood)
+};
+
 export const updateFood = async (id: number, food: Food): Promise<Food> => {
     food.isPopular = food.isPopular ? 1 : 0
 

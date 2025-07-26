@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { allowedCategories } from '../utils/constants'
+import { allowedCategories, allowedSearchParams } from '../utils/constants'
 import helpers from '../utils/helpers';
 
 // ID Param Schema
@@ -47,3 +47,15 @@ export const bulkFoodSchema = z.array(foodSchema);
 
 // For PUT (Update)
 export const updateFoodSchema = baseFoodSchema.partial();
+
+// For Search
+export const searchSchema = z.object({
+    searchParam: z
+        .string()
+        .refine((val: string) => allowedSearchParams.includes(val), {
+            message: `Param must be one of: ${allowedSearchParams.join(', ')}`
+        }),
+    searchValue: z
+        .string()
+        .transform((val: string) => helpers.normalizeSearchValue(val))
+});

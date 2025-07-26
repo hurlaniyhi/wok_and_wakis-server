@@ -25,8 +25,13 @@ function normalizeFood(foodItem: Food) {
     };
 }
 
+function normalizeSearchValue(value: string) {
+    return value === 'true' ? '1' : value === 'false' ? '0' : value
+}
+
 export default {
     getZodErrorStatusCode,
     normalizeCategory,
-    normalizeFood
+    normalizeFood,
+    normalizeSearchValue
 }

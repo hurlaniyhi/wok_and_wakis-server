@@ -9,3 +9,12 @@ export const allowedCategories = [
     "Kid’s Menu",
     "Sides"
 ]
+
+export const allowedSearchParams = [
+    'id',
+    'title',
+    'description',
+    'category',
+    'price',
+    'isPopular'
+]
